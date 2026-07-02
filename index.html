@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADeEl - Advanced Digital Employee Log</title>
+    <meta name="description" content="Smart Platform for Daily Work Activities, Performance Tracking, and Reporting.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📋</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .fade-in-up { opacity: 0; transform: translateY(30px); animation: fadeInUp 1s ease forwards; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        .delay-1 { animation-delay: 0.3s; }
+        .delay-2 { animation-delay: 0.6s; }
+        .delay-3 { animation-delay: 0.9s; }
+        .delay-4 { animation-delay: 1.2s; }
+        .no-select { user-select: none; }
+    </style>
+</head>
+<body class="landing-page no-select" id="landingPage">
+    <div class="landing-particle"></div><div class="landing-particle"></div>
+    <div class="landing-particle"></div><div class="landing-particle"></div>
+    <div class="landing-particle"></div><div class="landing-particle"></div>
+    <div class="landing-particle"></div><div class="landing-particle"></div>
+    <div class="landing-particle"></div><div class="landing-particle"></div>
+    <div class="landing-container">
+        <div class="landing-glass">
+            <div class="landing-logo fade-in-up">
+                <i class="fas fa-clipboard-list"></i>
+            </div>
+            <h1 class="landing-title fade-in-up delay-1">ADeEl</h1>
+            <p class="landing-subtitle fade-in-up delay-2">Advanced Digital Employee Log</p>
+            <p class="landing-tagline fade-in-up delay-3">Smart Platform for Daily Work Activities,<br>Performance Tracking, and Reporting.</p>
+            <div class="landing-typing fade-in-up delay-3" id="typingText"></div>
+            <div class="landing-progress fade-in-up delay-4">
+                <div class="landing-progress-bar" id="progressBar"></div>
+            </div>
+            <div class="landing-countdown" id="countdown">3</div>
+        </div>
+    </div>
+    <script>
+        const typingTexts = [
+            "Pencatatan Aktivitas Digital",
+            "Monitoring Kinerja Real-time",
+            "Laporan Otomatis & Akurat",
+            "Manajemen ASN & Non ASN",
+            "Produktivitas SDM Kesehatan"
+        ];
+        let typingIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingEl = document.getElementById("typingText");
+        function typeEffect() {
+            const currentText = typingTexts[typingIndex];
+            if (!isDeleting) {
+                typingEl.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+                if (charIndex === currentText.length) {
+                    isDeleting = true;
+                    setTimeout(typeEffect, 1500);
+                    return;
+                }
+                setTimeout(typeEffect, 80);
+            } else {
+                typingEl.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    typingIndex = (typingIndex + 1) % typingTexts.length;
+                    setTimeout(typeEffect, 300);
+                    return;
+                }
+                setTimeout(typeEffect, 40);
+            }
+        }
+        typeEffect();
+        let count = 3;
+        const countdownEl = document.getElementById("countdown");
+        const progressBar = document.getElementById("progressBar");
+        const timer = setInterval(() => {
+            count--;
+            countdownEl.textContent = count > 0 ? count : "";
+            progressBar.style.width = ((3 - count) / 3 * 100) + "%";
+            if (count <= 0) {
+                clearInterval(timer);
+                countdownEl.style.opacity = "0";
+                setTimeout(() => { window.location.href = "dashboard.html"; }, 300);
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

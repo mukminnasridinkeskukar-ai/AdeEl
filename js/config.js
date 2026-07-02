@@ -1,0 +1,2 @@
+﻿const CONFIG = { WEB_APP_URL: "", SPREADSHEET_ID: "", VERSION: "1.0.0", APP_NAME: "ADeEl", APP_FULLNAME: "Advanced Digital Employee Log", TAGLINE: "Smart Platform for Daily Work Activities, Performance Tracking, and Reporting.", COMPANY: "Dinas Kesehatan", AUTO_LOGOUT_MINUTES: 30, API_TIMEOUT: 30000, MAX_RETRY: 3, RETRY_DELAY: 1000, SESSION_KEY: "adeel_session", TOKEN_KEY: "adeel_token", THEME_KEY: "adeel_theme" };
+
